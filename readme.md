@@ -6,5 +6,6 @@
 * smp.pretrain.pkl.gz: 原始句子变为向量后的保存结果，后续直接读取即可
 * lstm_smp_31train_31test.py: lstm直接进行分类的代码
 * smp_topic_cluster_n.py: 聚类代码 n即聚类中心数目
+* lstm_smp_2satge_2-2-30-30.py: 二阶段代码 先分到对应聚类中心 后分小类
 
 * 待探究： lstm->cnn 
