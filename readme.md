@@ -8,5 +8,5 @@
 * lstm_smp_30train_30test.py: lstm进行分类 但训练集与测试集均除去“未定义”类
 * smp_topic_cluster_n.py: 聚类代码 n即聚类中心数目
 * lstm_smp_2satge_2-2-30-30.py: 二阶段代码 先分到对应聚类中心 后分小类
-
+* lstm_smp_ntrain_ntest.py: 训练归到哪个聚类中心 n即聚类中心数目
 * 待探究： lstm->cnn 
