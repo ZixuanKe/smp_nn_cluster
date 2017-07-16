@@ -1,8 +1,8 @@
 ﻿## smp_nn_cluster
 
 ---
-** Windows 下操作请修改保存文件名 冒号在Windows下可能有问题
-** 如果保存文件有问题 可以尝试 1， 升级Keras 2. 只保存权重而不保存整个模型
+*Windows 下操作请修改保存文件名 冒号在Windows下可能有问题*  
+*如果保存文件有问题 可以尝试 1， 升级Keras 2. 只保存权重而不保存整个模型*  
 * cases.xlsx: 分类的cases输出，可以通过筛选得到bad caese
 * smp.tags: 分类标签 + 统计 +　标签对应序号
 * smp.pretrain.pkl.gz: 原始句子变为向量后的保存结果，后续直接读取即可
