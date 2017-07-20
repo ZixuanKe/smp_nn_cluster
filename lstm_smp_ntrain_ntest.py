@@ -49,11 +49,11 @@ def load_data(max_features,dataset):
     return train_x, train_y, test_x, test_y
 
 
-max_features = 2436
+max_features = 2298
 maxlen = 50 # cut texts after this number of words (among top max_features most common words)
 # 限定最大词数
 
-batch_size = 25
+batch_size = 50
 len_wv = 50
 n_folds = 5
 n_classes =  输入类别数量
@@ -145,7 +145,7 @@ print('x_test shape:', x_test.shape)
 
 
 # step 1: train / test 均2分类
-y_test = np_utils.to_categorical(y_test, n) 
+y_test = np_utils.to_categorical(y_test, n)
 y_train = np_utils.to_categorical(y_train, n)
 
 
