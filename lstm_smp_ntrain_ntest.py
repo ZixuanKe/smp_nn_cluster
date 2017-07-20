@@ -56,13 +56,13 @@ maxlen = 50 # cut texts after this number of words (among top max_features most 
 batch_size = 25
 len_wv = 50
 n_folds = 5
-n_classes = 25
+n_classes =  输入类别数量
 s = 1
-undefine_seq = 11
-n= 7 # 聚类中心数
+undefine_seq = 0 # 未定义类对应0
+n= 输入聚类中心数
 
-kmeans_model = 'minikmeans_' + str(n) + '_ch2r_kfold_1.pkl'
-weights_filepath = 'maxf_ch2r_' + str(n) + 'train_' + str(n) + 'split_' + str(s) + 'develop_weights.epoch:{epoch:02d}-val_acc:{val_acc:.2f}.hdf5'
+kmeans_model = 对应的kmeans model
+weights_filepath = 'maxf_smp_' + str(n) + 'train_' + str(n) + 'split_' + str(s) + 'develop_weights.epoch:{epoch:02d}-val_acc:{val_acc:.2f}.hdf5'
 
 print 'Loading data'
 # x_train, y_train, x_test, y_test= load_data(max_features, dataset='ch2r.pretrain.pkl.gz')
@@ -70,11 +70,11 @@ print 'Loading data'
 
 
 # 直接读取tag才可统一
-
-x_train = np.load('1_train_test_x_train_kf.npy')
-x_test = np.load('1_train_test_x_test_kf.npy')
-y_train = np.load('1_train_test_y_train_kf.npy')
-y_test = np.load('1_train_test_y_test_kf.npy')
+读入对应的验证集
+# x_train = np.load('1_train_test_x_train_kf.npy')
+# x_test = np.load('1_train_test_x_test_kf.npy')
+# y_train = np.load('1_train_test_y_train_kf.npy')
+# y_test = np.load('1_train_test_y_test_kf.npy')
 
 
 
@@ -113,8 +113,8 @@ x_new_test = x_new_test.reshape((len(x_new_test),maxlen*len_wv))  #方便结合
 kmeans = joblib.load(kmeans_model)    #仍然用Kmeans_train, 聚类中心由训练集得出
 y_new_test = kmeans.predict(x_new_test)
 
-for i in range(len(y_test)):
-    y_test[i] = n# 只对已定义类进行分类 0-4 "未定义"类为5
+for i in range(len(x_new_test)):
+    y_new_test[i] = y_new_test[i] + 1 # 只对已定义类进行分类
 
 x_test = np.concatenate((x_test,x_new_test),axis=0)
 y_test = np.concatenate((y_test,y_new_test),axis=0) #拼接为新类
@@ -124,8 +124,9 @@ y_test = np.concatenate((y_test,y_new_test),axis=0) #拼接为新类
 kmeans = joblib.load(kmeans_model)
 y_new_train = kmeans.predict(x_new_train)
 
-for i in range(len(y_train)):
-    y_train[i] = n # 只对已定义类进行分类 "未定义"类为5
+for i in range(len(x_new_train)):
+    y_new_train[i] = y_new_train[i] + 1 # 只对已定义类进行分类
+
 
 x_train = np.concatenate((x_train,x_new_train),axis=0)
 y_train = np.concatenate((y_train,y_new_train),axis=0) #拼接为新类
@@ -144,8 +145,8 @@ print('x_test shape:', x_test.shape)
 
 
 # step 1: train / test 均2分类
-y_test = np_utils.to_categorical(y_test, n+1) # 必须使用固定格式表示标签
-y_train = np_utils.to_categorical(y_train, n+1) # 必须使用固定格式表示标签 一共 42分类
+y_test = np_utils.to_categorical(y_test, n) 
+y_train = np_utils.to_categorical(y_train, n)
 
 
 print'Build model...'
