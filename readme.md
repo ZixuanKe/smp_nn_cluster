@@ -12,6 +12,7 @@
 * lstm_smp_2satge_2-2-30-30.py: 二阶段代码 先分到对应聚类中心 后分小类
 * lstm_smp_ntrain_ntest.py: 训练LSTM K+1分类器 n即聚类中心数目
 * lstm_smp_2train_2test.py: lstm进行分类 所有“未定义”为一类 所有“已定义”为一类
+* prepare_smp_pretrained.py: 数据预处理
 * 附： ch2r文件夹： ch2r数据集的全部代码
 
 * 待探究： lstm->cnn 
