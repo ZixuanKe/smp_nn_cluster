@@ -145,8 +145,8 @@ print('x_test shape:', x_test.shape)
 
 
 # step 1: train / test 均2分类
-y_test = np_utils.to_categorical(y_test, n)
-y_train = np_utils.to_categorical(y_train, n)
+y_test = np_utils.to_categorical(y_test, n+1)
+y_train = np_utils.to_categorical(y_train, n+1)
 
 
 print'Build model...'
