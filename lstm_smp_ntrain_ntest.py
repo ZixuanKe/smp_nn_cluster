@@ -171,7 +171,7 @@ model.add(LSTM(150,return_sequences=True))
 model.add(LSTM(150,return_sequences=True))
 model.add(LSTM(150))        #输出不同相差10% 调参影响巨大
 
-model.add(Dense(n))
+model.add(Dense(n+1))
 model.add(Activation('softmax'))
 #
 # for i in range(11):
