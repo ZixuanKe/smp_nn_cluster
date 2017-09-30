@@ -67,7 +67,7 @@ def str2wordlist(s):
     return [w for w in words if (
         len(w) > 1 and w not in except_words or w in accept_words)]
 
-
+# 有人报错 待探究
 # convert each utterance into a list of word vectors(presented as list),
 # convert tag into it's number. return a list with element formed like
 # ([word_vec1, word_vec2, ...], tag_no)
@@ -79,7 +79,7 @@ def process_data(model, tags):
     corpus = CorpusReader()
     for index, utt in corpus.iterrows():
         print utt['Words']
-        wordlist = utt['Words']
+        wordlist = utt['Words']	# wordlist不同 不能直接for出来
         for word in wordlist:
             if word in model:
                 if word not in model_cache:
